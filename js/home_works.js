@@ -97,3 +97,4 @@ const resetTimer = () => {
 startBtn.addEventListener("click", startTimer);
 stopBtn.addEventListener("click", stopTimer);
 resetBtn.addEventListener("click", resetTimer);
+
