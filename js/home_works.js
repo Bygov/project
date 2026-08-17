@@ -34,22 +34,19 @@ const moveBlock = () => {
     } else {
       direction = "down";
     }
-  }
-  else if (direction === "down") {
+  } else if (direction === "down") {
     if (positionY < maxHeight) {
       positionY++;
     } else {
       direction = "left";
     }
-  }
-  else if (direction === "left") {
+  } else if (direction === "left") {
     if (positionX > 0) {
       positionX--;
     } else {
       direction = "up";
     }
-  }
-  else if (direction === "up") {
+  } else if (direction === "up") {
     if (positionY > 0) {
       positionY--;
     } else {
@@ -63,8 +60,6 @@ const moveBlock = () => {
 };
 
 moveBlock();
-
-
 
 const secondsValue = document.getElementById("seconds");
 const startBtn = document.getElementById("start");
@@ -89,12 +84,72 @@ const stopTimer = () => {
 };
 
 const resetTimer = () => {
-  stopTimer(); 
-  count = 0; 
-  secondsValue.textContent = count; 
+  stopTimer();
+  count = 0;
+  secondsValue.textContent = count;
 };
 
 startBtn.addEventListener("click", startTimer);
 stopBtn.addEventListener("click", stopTimer);
 resetBtn.addEventListener("click", resetTimer);
 
+// card
+
+const charactersList = document.querySelector(".characters-list");
+
+const request = new XMLHttpRequest();
+
+request.open("GET", "../data/characters.json");
+request.setRequestHeader("Content-Type", "application/json");
+request.send();
+
+request.addEventListener("load", () => {
+  if (request.status >= 200 && request.status < 300) {
+    const data = JSON.parse(request.response);
+
+    charactersList.innerHTML = "";
+
+    data.forEach((character) => {
+      const card = document.createElement("div");
+      card.classList.add("character-card");
+
+      card.innerHTML = `
+                <div class="character-photo">
+                    <img src="${character.photo}" alt="${character.name}">
+                </div>
+                <h3>${character.name}</h3>
+                <p>${character.role}</p>
+            `;
+
+      charactersList.appendChild(card);
+    });
+  } else {
+    console.error(`Ошибка при загрузке данных: ${request.status}`);
+  }
+});
+
+request.addEventListener("error", () => {
+  console.error("Произошла ошибка сети");
+});
+
+
+
+
+const anyRequest = new XMLHttpRequest();
+
+anyRequest.open('GET', '../data/any.json');
+anyRequest.setRequestHeader('Content-Type', 'application/json');
+anyRequest.send();
+
+anyRequest.addEventListener('load', () => {
+    if (anyRequest.status >= 200 && anyRequest.status < 300) {
+        const data = JSON.parse(anyRequest.response);
+        console.log(data);
+    } else {
+        console.error(`Ошибка загрузки: ${anyRequest.status}`);
+    }
+});
+
+anyRequest.addEventListener('error', () => {
+    console.error('Произошла ошибка сети');
+});

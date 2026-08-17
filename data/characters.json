@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Эксл Роуз",
+    "role": "Вокалист (Guns N' Roses)",
+    "photo": "../images/characters/Axl_Rose.webp"
+  },
+  {
+    "name": "Джон Бон Джови",
+    "role": "Вокалист (Bon Jovi)",
+    "photo": "../images/characters/Jone Bon Jovi.webp"
+  },
+  {
+    "name": "Дейв Мастейн",
+    "role": "Гитарист / Вокалист (Megadeth)",
+    "photo": "../images/characters/Dave_Mustaine.webp"
+  }
+]
